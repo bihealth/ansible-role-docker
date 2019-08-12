@@ -1,0 +1,4 @@
+---
+
+# List of users to add to the docker group.
+docker_users: []

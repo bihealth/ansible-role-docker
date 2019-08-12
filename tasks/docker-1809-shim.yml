@@ -1,0 +1,18 @@
+---
+
+- name: create containerd service dir
+  file:
+    path: /etc/systemd/system/containerd.service.d
+    state: directory
+
+- name: add shim to ensure Docker can start in all environments
+  template:
+    src: override.conf.j2
+    dest: /etc/systemd/system/containerd.service.d/override.conf
+  register: override_template
+
+- name: reload systemd daemon if template is changed
+  systemd:
+    daemon_reload: true
+  when: override_template.changed
+  tags: [skip_ansible_lint]  # need to run NOW and not in handler

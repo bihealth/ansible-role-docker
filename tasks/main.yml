@@ -1,0 +1,18 @@
+---
+
+- name: perform installation
+  include_tasks: install/{{ ansible_os_family }}.yml
+
+# TODO: Remove this shim once 18.09.1 or later is released.
+- import_tasks: docker-1809-shim.yml
+  when: ansible_service_mgr == 'systemd'
+
+- name: enable and start docker
+  systemd: name=docker state=started enabled=true
+
+- name: add docker users to docker group
+  user:
+    name: "{{ item }}"
+    groups: docker
+    append: true
+  loop: "{{ docker_users }}"

@@ -1,0 +1,4 @@
+---
+
+- name: restart docker-ce
+  systemd: name=docker-ce state=restarted
