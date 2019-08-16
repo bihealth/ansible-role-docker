@@ -5,6 +5,7 @@
     name:
       - apt-transport-https
       - ca-certificates
+      - e2fsprogs
     state: present
 
 - name: add Docker apt key

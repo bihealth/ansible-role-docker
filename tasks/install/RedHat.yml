@@ -13,6 +13,12 @@
     group: root
     mode: 0644
 
+- name: install dependencies
+  yum:
+    name:
+      - e2fsprogs
+    state: present
+
 - name: install Docker package
   yum:
     name:
