@@ -1,6 +1,6 @@
 # Changelog
 
-## HEAD (unreleased)
+## v0.2.1
 
 - Exposing `restart_policy` of `docker_container`.
 
