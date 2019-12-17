@@ -1,5 +1,9 @@
 # Changelog
 
+## HEAD (unreleased)
+
+- Exposing `restart_policy` of `docker_container`.
+
 ## v0.2.0
 
 - Adding capabilities to launch Docker containers
