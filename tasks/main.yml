@@ -16,3 +16,13 @@
     groups: docker
     append: true
   loop: "{{ docker_users }}"
+
+- name: launch docker containers
+  docker_container:
+    name: "{{ item.name }}"
+    image: "{{ item.image }}"
+    keep_volumes: "{{ item.keep_volumes|default(true) }}"
+    cleanup: "{{ item.cleanup|default(true) }}"
+    command: "{{ item.command }}"
+    published_ports: "{{ item.published_ports }}"
+  loop: "{{ docker_containers }}"

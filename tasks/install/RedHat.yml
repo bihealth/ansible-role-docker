@@ -22,5 +22,6 @@
 - name: install Docker package
   yum:
     name:
+      - python-docker
       - docker-ce
     state: present
