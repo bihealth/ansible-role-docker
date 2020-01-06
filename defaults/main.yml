@@ -2,3 +2,6 @@
 
 # List of users to add to the docker group.
 docker_users: []
+
+# The default timeout for the Docker API in seconds.
+docker_timeout: 60

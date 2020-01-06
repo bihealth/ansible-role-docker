@@ -1,5 +1,10 @@
 # Changelog
 
+## HEAD
+
+- Adding API timeout argument.
+- Setting default argument of `none`.
+
 ## v0.2.1
 
 - Exposing `restart_policy` of `docker_container`.

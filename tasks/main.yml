@@ -19,11 +19,12 @@
 
 - name: launch docker containers
   docker_container:
+    timeout: "{{ docker_timeout }}"
     name: "{{ item.name }}"
     image: "{{ item.image }}"
     keep_volumes: "{{ item.keep_volumes|default(true) }}"
     cleanup: "{{ item.cleanup|default(true) }}"
-    command: "{{ item.command }}"
+    command: "{{ item.command|default(none) }}"
     published_ports: "{{ item.published_ports }}"
     restart_policy: "{{ item.restart_policy|default('no') }}"
   loop: "{{ docker_containers }}"
