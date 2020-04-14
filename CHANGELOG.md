@@ -1,7 +1,8 @@
 # Changelog
 
-## HEAD
+## v0.2.2
 
+- Hackily adding Docker support for CentOS 8.
 - Adding API timeout argument.
 - Setting default argument of `none`.
 

@@ -13,6 +13,22 @@
     group: root
     mode: 0644
 
+- name: Enable Docker Edge repo
+  ini_file:
+    dest: /etc/yum.repos.d/docker-ce.repo
+    section: 'docker-ce-edge'
+    option: enabled
+    value: 0
+  when: ansible_facts['distribution_major_version'] == "8"
+
+- name: Enable Docker Test repo
+  ini_file:
+    dest: /etc/yum.repos.d/docker-ce.repo
+    section: 'docker-ce-test'
+    option: enabled
+    value: 0
+  when: ansible_facts['distribution_major_version'] == "8"
+
 - name: install dependencies
   yum:
     name:
@@ -25,3 +41,17 @@
       - python-docker
       - docker-ce
     state: present
+    disable_excludes: all
+  when: ansible_facts['distribution_major_version'] == "7"
+
+- name: install Docker package
+  command: yum install docker-ce --nobest -y
+  when: ansible_facts['distribution_major_version'] == "8"
+
+- name: install python
+  yum: name=python3 state=present
+  when: ansible_facts['distribution_major_version'] == "8"
+
+- name: install python-docker
+  command: pip3 install docker
+  when: ansible_facts['distribution_major_version'] == "8"
