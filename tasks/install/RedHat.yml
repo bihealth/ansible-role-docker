@@ -36,12 +36,17 @@
     state: present
 
 - name: install Docker package
-  yum:
-    name:
-      - python-docker
-      - docker-ce
+  yum: name=docker-ce state=present disable_excludes=all
+  when: ansible_facts['distribution_major_version'] == "7"
+
+- name: uninstall docker-py
+  yum: name=python-docker-py state=absent
+  when: ansible_facts['distribution_major_version'] == "7"
+
+- name: pip install docker
+  pip:
+    name: docker==4.4.0
     state: present
-    disable_excludes: all
   when: ansible_facts['distribution_major_version'] == "7"
 
 - name: install Docker package
