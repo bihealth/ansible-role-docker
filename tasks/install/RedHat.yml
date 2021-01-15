@@ -33,7 +33,16 @@
   yum:
     name:
       - e2fsprogs
+      - python3-setuptools
     state: present
+
+- name: install python-pip
+  shell:
+    curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
+    python get-pip.py
+  args:
+    executable: /usr/bin/bash
+    creates: /usr/bin/pip
 
 - name: install Docker package
   yum: name=docker-ce state=present disable_excludes=all
